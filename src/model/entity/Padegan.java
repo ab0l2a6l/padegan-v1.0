@@ -7,6 +7,17 @@ public class Padegan {
     private String departureTime; // saat khorooj
     private long id;
 
+    @Override
+    public String toString() {
+        return "Padegan{" +
+                "date='" + date + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", entryTime='" + entryTime + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                ", id=" + id +
+                '}';
+    }
+
     public String getDate() {
         return date;
     }
