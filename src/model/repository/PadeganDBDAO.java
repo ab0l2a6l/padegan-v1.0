@@ -20,6 +20,7 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
         try {
             connection = DriverManager.getConnection(url, username, password);
             statement = connection.createStatement();
+            System.out.println("connected");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -37,4 +38,12 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
         System.out.println(query);
         statement.executeUpdate(query);
     }
+
+    @Override
+    public void close() throws Exception {
+        statement.close();
+        connection.close();
+        System.out.println("disconnected");
+    }
+
 }
