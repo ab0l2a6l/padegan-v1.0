@@ -3,8 +3,9 @@ package model.entity;
 public class Padegan {
     private String date;        // tarikh on rooz
     private String fullName;
-    private String entryTime;   //saat vorod
-    private String departureTime; // saat khoroj
+    private String entryTime;   //saat vorood
+    private String departureTime; // saat khorooj
+    private long id;
 
     public String getDate() {
         return date;
@@ -36,5 +37,13 @@ public class Padegan {
 
     public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }
