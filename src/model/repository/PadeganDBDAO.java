@@ -28,19 +28,21 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
 
     @Override
     public void save(Padegan padegan) throws Exception {
-
-        query = "insert into padegan set values padegan_id = " + padegan.getId() +
-                ", padegan_full_name = \"" + padegan.getFullName() + "\"" +
-                ", padegan_saat_vorood= \"" + padegan.getEntryTime() + "\"" +
-                ",padegan_saat_khorooj=\"" + padegan.getDepartureTime() + "\"" +
-                ", padegan_date=  " + padegan.getDate();
+        //insert into firstdb.padegan    (padegan_id ,padegan_full_name,padegan_saat_vorood, padegan_saat_khorooj , padegan_date)
+        // values ( 2,   "abolfazl mohammadi",  "7:30","13:50",  "1/9")
+        query = "insert into padegan  (padegan_id ,padegan_full_name,padegan_saat_vorood, padegan_saat_khorooj , padegan_date)" +
+                " values (  " + padegan.getId() +
+                ",   \"" + padegan.getFullName() + "\"" +
+                ",  \"" + padegan.getEntryTime() + "\"" +
+                ",\"" + padegan.getDepartureTime() + "\"" +
+                ", \"" + padegan.getDate()+"\")";
         System.out.println(query);
         statement.executeUpdate(query);
     }
 
     @Override
     public Padegan readData(long id, String date) throws Exception {
-        query = "select * from padegan where padegan_id = " + id + ", padegan_date = \"" + date + "\"";
+        query = "select * from padegan where padegan_id = " + id + " and padegan_date = \"" + date + "\"";
         ResultSet set = statement.executeQuery(query);
         if (set.next()) {
             Padegan padegan = new Padegan();
