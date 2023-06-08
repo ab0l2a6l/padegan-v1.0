@@ -1,5 +1,7 @@
 package model.service;
 
-public interface PadeganServiceRead {
+import model.entity.Padegan;
 
+public interface PadeganServiceRead {
+    Padegan readData(long id , String date);
 }
