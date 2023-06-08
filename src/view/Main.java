@@ -50,6 +50,10 @@ public class Main {
                     System.out.println(padeganControler.readDate(padegan.getId(), padegan.getDate()));
                 }
 
+                case 3 -> {
+                    return;
+                }
+
                 default ->
                     System.out.println("wrong number");
 
@@ -61,6 +65,7 @@ public class Main {
     private static void menu() {
         System.out.println("1.sabt vorod o khoroj");
         System.out.println("2.didan etelaat fard");
+        System.out.println("3.exit");
     }
 
 }
