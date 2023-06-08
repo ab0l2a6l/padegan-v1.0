@@ -15,7 +15,6 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
     private final String password = "Am311865186";
     private String query;
 
-
     public PadeganDBDAO() {
         try {
             connection = DriverManager.getConnection(url, username, password);
@@ -26,17 +25,23 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
         }
     }
 
-
     @Override
     public void save(Padegan padegan) throws Exception {
 
         query = "insert into padegan set values padegan_id = " + padegan.getId() +
-                ", padegan_full_name = " + padegan.getFullName() +
-                ", padegan_saat_vorood= " + padegan.getEntryTime() +
-                ",padegan_saat_khorooj=" + padegan.getDepartureTime() +
+                ", padegan_full_name = \"" + padegan.getFullName() + "\"" +
+                ", padegan_saat_vorood= \"" + padegan.getEntryTime() + "\"" +
+                ",padegan_saat_khorooj=\"" + padegan.getDepartureTime() + "\"" +
                 ", padegan_date=  " + padegan.getDate();
         System.out.println(query);
         statement.executeUpdate(query);
+    }
+
+    @Override
+    public Padegan readData(long id, String date) throws Exception {
+        query = "select * from padegan where padegan_id = " + id + ", padegan_date = \"" + date + "\"";
+        statement.executeQuery(query);
+        return null;
     }
 
     @Override
@@ -45,5 +50,4 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
         connection.close();
         System.out.println("disconnected");
     }
-
 }
