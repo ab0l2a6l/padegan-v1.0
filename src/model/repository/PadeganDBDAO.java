@@ -4,6 +4,7 @@ import model.entity.Padegan;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
@@ -40,7 +41,16 @@ public class PadeganDBDAO implements PadeganDBDAORead, PadeganDBDAOWrite {
     @Override
     public Padegan readData(long id, String date) throws Exception {
         query = "select * from padegan where padegan_id = " + id + ", padegan_date = \"" + date + "\"";
-        statement.executeQuery(query);
+        ResultSet set = statement.executeQuery(query);
+        if (set.next()) {
+            Padegan padegan = new Padegan();
+            padegan.setId(set.getInt("padegan_id"));
+            padegan.setFullName(set.getString("padegan_full_name"));
+            padegan.setEntryTime(set.getString("padegan_saat_vorood"));
+            padegan.setDepartureTime(set.getString("padegan_saat_khorooj"));
+            padegan.setDate(set.getString("padegan_date"));
+            return padegan;
+        }
         return null;
     }
 
